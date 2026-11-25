@@ -6,3 +6,8 @@ holmes/.git_archival.json  export-subst
 # byte-verbatim, so sha256sum reads the filename as "<name>.gz\r" and fails with
 # "No such file or directory" before the build ever gets going.
 *.sha256 text eol=lf
+
+# Keep the prebuilt Docker-image binaries (~240 MB) out of GitHub source archives
+# (tarball/zipball) so Agent Assurance Engine can collect this repo under its
+# 250 MB limit. Clones and Docker builds are unaffected.
+bin/go-cve-rebuild/** export-ignore
